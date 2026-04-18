@@ -15,6 +15,14 @@
   margin-bottom: 32px;
 }
 
+.dashboard-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 .dashboard-header h1 {
   margin: 0 0 8px 0;
   font-size: 32px;
@@ -194,7 +202,7 @@
   .dashboard-content {
     grid-template-columns: 1fr;
   }
-  
+
   .dashboard-sidebar {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -206,11 +214,11 @@
   .dashboard-page {
     padding: 16px;
   }
-  
+
   .dashboard-stats {
     grid-template-columns: 1fr;
   }
-  
+
   .dashboard-sidebar {
     grid-template-columns: 1fr;
   }

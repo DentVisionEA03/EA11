@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Input, Button, Loading } from '../components';
+import { Card, Input, Button, Loading, HomeButton } from '../components';
 import './Login.css';
 
 const Login = () => {
@@ -73,6 +73,7 @@ const Login = () => {
           subtitle="Ingresa tus credenciales para acceder"
           className="login-card"
           padding="large"
+          headerExtra={<HomeButton variant="ghost" size="small" />}
         >
           <form onSubmit={handleSubmit} className="login-form">
             <Input

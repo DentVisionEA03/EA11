@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Button, Loading } from '../components';
+import { Card, Button, Loading, HomeButton } from '../components';
+import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [stats, setStats] = useState({
     totalProducts: 0,
     activeUsers: 0,
@@ -69,8 +71,13 @@ const Dashboard = () => {
   return (
     <div className="dashboard-page">
       <div className="dashboard-header">
-        <h1>Dashboard</h1>
-        <p>Bienvenido al panel de control</p>
+        <div className="dashboard-header-content">
+          <div>
+            <h1>Dashboard</h1>
+            <p>Bienvenido al panel de control</p>
+          </div>
+          <HomeButton variant="secondary" size="medium" />
+        </div>
       </div>
 
       <div className="dashboard-stats">
@@ -142,7 +149,11 @@ const Dashboard = () => {
         <div className="dashboard-sidebar">
           <Card title="Acciones Rápidas" className="quick-actions-card">
             <div className="quick-actions">
-              <Button variant="primary" className="quick-action-btn">
+              <Button 
+                variant="primary" 
+                className="quick-action-btn"
+                onClick={() => navigate('/add-product')}
+              >
                 ➕ Nuevo Producto
               </Button>
               <Button variant="secondary" className="quick-action-btn">

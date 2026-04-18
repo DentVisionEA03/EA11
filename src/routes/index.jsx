@@ -3,11 +3,13 @@ import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 import { useAuth } from '../context';
 
 // Importar páginas desde la carpeta pages
+import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
 import Settings from '../pages/Settings';
+import AddProduct from '../pages/AddProduct';
 
 // Componente de protección de rutas
 const ProtectedRoute = ({ children }) => {
@@ -31,7 +33,7 @@ const PublicRoute = ({ children }) => {
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Navigate to="/dashboard" replace />,
+    element: <Home />,
     errorElement: <div>Something went wrong!</div>
   },
   {
@@ -71,6 +73,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <Settings />
+      </ProtectedRoute>
+    )
+  },
+  {
+    path: '/add-product',
+    element: (
+      <ProtectedRoute>
+        <AddProduct />
       </ProtectedRoute>
     )
   },

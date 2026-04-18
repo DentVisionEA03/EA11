@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Input, Button, Loading } from '../components';
+import { Card, Input, Button, Loading, HomeButton } from '../components';
 import './Register.css';
 
 const Register = () => {
@@ -87,6 +87,7 @@ const Register = () => {
           subtitle="Regístrate para comenzar a usar nuestros servicios"
           className="register-card"
           padding="large"
+          headerExtra={<HomeButton variant="ghost" size="small" />}
         >
           <form onSubmit={handleSubmit} className="register-form">
             <Input
