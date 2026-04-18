@@ -1,0 +1,76 @@
+.register-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.register-container {
+  width: 100%;
+  max-width: 450px;
+}
+
+.register-card {
+  width: 100%;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-options {
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.terms-agreement {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: #6b7280;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.terms-agreement input[type="checkbox"] {
+  margin: 2px 0 0 0;
+}
+
+.terms-agreement a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.terms-agreement a:hover {
+  text-decoration: underline;
+}
+
+.register-button {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.register-footer {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.register-footer p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.register-footer a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.register-footer a:hover {
+  text-decoration: underline;
+}
