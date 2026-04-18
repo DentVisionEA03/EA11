@@ -1,0 +1,96 @@
+.card {
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  border-color: #d1d5db;
+}
+
+/* Variants */
+.card--default {
+  background-color: white;
+}
+
+.card--primary {
+  background-color: #eff6ff;
+  border-color: #3b82f6;
+}
+
+.card--success {
+  background-color: #f0fdf4;
+  border-color: #22c55e;
+}
+
+.card--warning {
+  background-color: #fffbeb;
+  border-color: #f59e0b;
+}
+
+.card--danger {
+  background-color: #fef2f2;
+  border-color: #ef4444;
+}
+
+/* Padding */
+.card--padding-small {
+  padding: 12px;
+}
+
+.card--padding-medium {
+  padding: 16px;
+}
+
+.card--padding-large {
+  padding: 24px;
+}
+
+/* Shadow */
+.card--shadow-none {
+  box-shadow: none;
+}
+
+.card--shadow-small {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.card--shadow-medium {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.card--shadow-large {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+  margin-bottom: 16px;
+}
+
+.card-title {
+  margin: 0 0 4px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.card-subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.card-body {
+  margin-bottom: 16px;
+}
+
+.card-body:last-child {
+  margin-bottom: 0;
+}
+
+.card-footer {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 16px;
+  margin-top: 16px;
+}
