@@ -1,5 +1,5 @@
 // Base URL de la API
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
 // Servicio genérico de API
 class ApiService {
@@ -18,7 +18,19 @@ class ApiService {
 
   // Manejar errores
   async handleResponse(response) {
-    const data = await response.json();
+    let data;
+    
+    try {
+      data = await response.json();
+    } catch {
+      // Si no es JSON, intentar como texto
+      try {
+        const text = await response.text();
+        data = { message: text };
+      } catch {
+        data = { message: response.statusText || 'Error desconocido' };
+      }
+    }
 
     if (!response.ok) {
       // Si es error de autenticación, limpiar token

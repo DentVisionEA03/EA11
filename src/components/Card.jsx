@@ -6,6 +6,7 @@ const Card = ({
   title,
   subtitle,
   footer,
+  headerExtra,
   variant = 'default',
   padding = 'medium',
   shadow = 'medium',
@@ -21,10 +22,13 @@ const Card = ({
       onClick={onClick}
       {...props}
     >
-      {(title || subtitle) && (
+      {(title || subtitle || headerExtra) && (
         <div className="card-header">
-          {title && <h3 className="card-title">{title}</h3>}
-          {subtitle && <p className="card-subtitle">{subtitle}</p>}
+          <div className="card-header-content">
+            {title && <h3 className="card-title">{title}</h3>}
+            {subtitle && <p className="card-subtitle">{subtitle}</p>}
+          </div>
+          {headerExtra && <div className="card-header-extra">{headerExtra}</div>}
         </div>
       )}
       

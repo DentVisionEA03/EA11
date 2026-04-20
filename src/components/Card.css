@@ -66,6 +66,14 @@
 
 .card-header {
   margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.card-header-content {
+  flex: 1;
 }
 
 .card-title {
