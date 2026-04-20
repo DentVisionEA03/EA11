@@ -1,0 +1,58 @@
+.product-register-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.product-register-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.product-register-card {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.product-register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product-register-button {
+  margin-top: 10px;
+}
+
+.product-register-footer {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.product-register-footer p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.product-register-footer a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.product-register-footer a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 14px;
+}

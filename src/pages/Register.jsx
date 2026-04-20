@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Card, Input, Button, Loading } from '../components';
+import { Card, Input, Button, Loading, HomeButton } from '../components';
+import UsuarioService from '../services/usuarioService';
 import './Register.css';
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    nombre: '',
     email: '',
     password: '',
     confirmPassword: ''
@@ -30,10 +31,10 @@ const Register = () => {
   const validateForm = () => {
     const newErrors = {};
     
-    if (!formData.name) {
-      newErrors.name = 'El nombre es requerido';
-    } else if (formData.name.length < 2) {
-      newErrors.name = 'El nombre debe tener al menos 2 caracteres';
+    if (!formData.nombre) {
+      newErrors.nombre = 'El nombre es requerido';
+    } else if (formData.nombre.length < 2 || formData.nombre.length > 50) {
+      newErrors.nombre = 'El nombre debe tener entre 2 y 50 caracteres';
     }
     
     if (!formData.email) {
@@ -44,8 +45,8 @@ const Register = () => {
     
     if (!formData.password) {
       newErrors.password = 'La contraseña es requerida';
-    } else if (formData.password.length < 6) {
-      newErrors.password = 'La contraseña debe tener al menos 6 caracteres';
+    } else if (formData.password.length < 8) {
+      newErrors.password = 'La contraseña debe tener al menos 8 caracteres';
     }
     
     if (!formData.confirmPassword) {
@@ -68,12 +69,20 @@ const Register = () => {
     
     setIsLoading(true);
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      console.log('Register data:', formData);
-      // Handle successful registration
+      const { confirmPassword, ...userData } = formData;
+      const response = await UsuarioService.crear(userData);
+      console.log('Usuario creado:', response);
+      alert('Usuario registrado exitosamente');
+      // Reset form
+      setFormData({
+        nombre: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+      });
     } catch (error) {
       console.error('Register error:', error);
+      setErrors({ submit: error.message });
     } finally {
       setIsLoading(false);
     }
@@ -87,16 +96,22 @@ const Register = () => {
           subtitle="Regístrate para comenzar a usar nuestros servicios"
           className="register-card"
           padding="large"
+          headerExtra={<HomeButton variant="ghost" size="small" />}
         >
           <form onSubmit={handleSubmit} className="register-form">
+            {errors.submit && (
+              <div className="error-message" style={{ color: '#ef4444', marginBottom: '16px', textAlign: 'center' }}>
+                {errors.submit}
+              </div>
+            )}
             <Input
               type="text"
               label="Nombre Completo"
-              name="name"
+              name="nombre"
               placeholder="Juan Pérez"
-              value={formData.name}
+              value={formData.nombre}
               onChange={handleChange}
-              error={errors.name}
+              error={errors.nombre}
               required
             />
             

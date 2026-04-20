@@ -22,7 +22,7 @@
   border-radius: 6px;
   font-size: 14px;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  background-color: white;
+  background-color: rgb(88, 87, 87);
 }
 
 .input-field:focus {
@@ -32,8 +32,8 @@
 }
 
 .input-field:disabled {
-  background-color: #f9fafb;
-  color: #6b7280;
+  background-color: #4d5f70;
+  color: #3e485e85;
   cursor: not-allowed;
 }
 

@@ -1,5 +1,5 @@
 // Base URL de la API
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
 // Servicio de autenticación
 class AuthService {
@@ -23,10 +23,25 @@ class AuthService {
         body: JSON.stringify(credentials)
       });
 
-      const data = await response.json();
+      let data;
+      try {
+        data = await response.json();
+      } catch {
+        try {
+          const text = await response.text();
+          data = { message: text };
+        } catch {
+          data = { message: response.statusText || 'Error al iniciar sesión' };
+        }
+      }
 
       if (!response.ok) {
         throw new Error(data.message || 'Error al iniciar sesión');
+      }
+
+      // Guardar token y usuario en localStorage
+      if (data.token) {
+        localStorage.setItem('token', data.token);
       }
 
       return data;
@@ -36,10 +51,10 @@ class AuthService {
     }
   }
 
-  // Register
+  // Register - usa el endpoint de usuarios
   async register(userData) {
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/register`, {
+      const response = await fetch(`${API_BASE_URL}/usuarios`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -47,7 +62,17 @@ class AuthService {
         body: JSON.stringify(userData)
       });
 
-      const data = await response.json();
+      let data;
+      try {
+        data = await response.json();
+      } catch {
+        try {
+          const text = await response.text();
+          data = { message: text };
+        } catch {
+          data = { message: response.statusText || 'Error al registrarse' };
+        }
+      }
 
       if (!response.ok) {
         throw new Error(data.message || 'Error al registrarse');

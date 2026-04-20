@@ -77,3 +77,32 @@
 .login-footer a:hover {
   text-decoration: underline;
 }
+
+.login-demo {
+  background-color: #f0f9ff;
+  border: 1px solid #0ea5e9;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 16px 0;
+}
+
+.demo-title {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0369a1;
+}
+
+.demo-credentials {
+  font-size: 13px;
+  color: #0c4a6e;
+}
+
+.demo-credentials div {
+  margin: 4px 0;
+}
+
+.demo-credentials strong {
+  color: #0369a1;
+  font-family: monospace;
+}

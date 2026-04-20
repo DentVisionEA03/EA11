@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import AuthService from '../services/authService';
 
 // Estado inicial
 const initialState = {
@@ -115,27 +116,24 @@ export const AuthProvider = ({ children }) => {
     dispatch({ type: authActions.LOGIN_START });
     
     try {
-      // Simular llamada a API
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Usar API real
+      const response = await AuthService.login(credentials);
       
-      // Simular respuesta exitosa
-      const mockResponse = {
-        user: {
-          id: 1,
-          name: 'Juan Pérez',
-          email: credentials.email,
-          role: 'user'
-        },
-        token: 'mock-jwt-token-' + Date.now()
+      // Crear objeto de usuario con datos del response
+      const user = {
+        id: 1,
+        name: 'Usuario',
+        email: credentials.email,
+        role: 'user'
       };
       
       // Guardar en localStorage
-      localStorage.setItem('token', mockResponse.token);
-      localStorage.setItem('user', JSON.stringify(mockResponse.user));
+      localStorage.setItem('token', response.token);
+      localStorage.setItem('user', JSON.stringify(user));
       
       dispatch({
         type: authActions.LOGIN_SUCCESS,
-        payload: mockResponse
+        payload: { user, token: response.token }
       });
       
       return { success: true };

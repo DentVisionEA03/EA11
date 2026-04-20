@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { Card, Input, Button, Loading } from '../components';
+import { Card, Input, Button, Loading, HomeButton } from '../components';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context';
 import './Login.css';
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -36,8 +40,8 @@ const Login = () => {
     
     if (!formData.password) {
       newErrors.password = 'La contraseña es requerida';
-    } else if (formData.password.length < 6) {
-      newErrors.password = 'La contraseña debe tener al menos 6 caracteres';
+    } else if (formData.password.length < 8) {
+      newErrors.password = 'La contraseña debe tener al menos 8 caracteres';
     }
     
     return newErrors;
@@ -54,12 +58,15 @@ const Login = () => {
     
     setIsLoading(true);
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      console.log('Login data:', formData);
-      // Handle successful login
+      const result = await login(formData);
+      
+      if (result.success) {
+        // Redirect to dashboard on successful login
+        navigate('/dashboard');
+      }
     } catch (error) {
       console.error('Login error:', error);
+      setErrors({ submit: error.message || 'Error al iniciar sesión' });
     } finally {
       setIsLoading(false);
     }
@@ -73,8 +80,14 @@ const Login = () => {
           subtitle="Ingresa tus credenciales para acceder"
           className="login-card"
           padding="large"
+          headerExtra={<HomeButton variant="ghost" size="small" />}
         >
           <form onSubmit={handleSubmit} className="login-form">
+            {errors.submit && (
+              <div className="error-message" style={{ color: '#ef4444', marginBottom: '16px', textAlign: 'center' }}>
+                {errors.submit}
+              </div>
+            )}
             <Input
               type="email"
               label="Email"
@@ -116,6 +129,7 @@ const Login = () => {
             >
               {isLoading ? <Loading text="Iniciando sesión..." /> : 'Iniciar Sesión'}
             </Button>
+            
             
             <div className="login-footer">
               <p>¿No tienes cuenta? <a href="/register">Regístrate</a></p>

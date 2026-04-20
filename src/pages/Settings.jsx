@@ -42,9 +42,20 @@ const Settings = () => {
   useEffect(() => {
     const fetchSettings = async () => {
       try {
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        // Settings are already set with default values
+        // Load settings from localStorage or use defaults
+        const savedSettings = localStorage.getItem('userSettings');
+        if (savedSettings) {
+          const parsedSettings = JSON.parse(savedSettings);
+          setSettings(prev => ({
+            ...prev,
+            ...parsedSettings
+          }));
+          
+          // Apply theme on load
+          if (parsedSettings.preferences?.theme) {
+            document.body.setAttribute('data-theme', parsedSettings.preferences.theme);
+          }
+        }
       } catch (error) {
         console.error('Error fetching settings:', error);
       } finally {
@@ -98,11 +109,21 @@ const Settings = () => {
   const handleSave = async () => {
     setIsSaving(true);
     try {
+      // Save to localStorage
+      localStorage.setItem('userSettings', JSON.stringify(settings));
+      
+      // Apply theme if changed
+      if (settings.preferences.theme) {
+        document.body.setAttribute('data-theme', settings.preferences.theme);
+      }
+      
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
       console.log('Settings saved:', settings);
+      alert('Configuración guardada exitosamente');
     } catch (error) {
       console.error('Error saving settings:', error);
+      alert('Error al guardar la configuración');
     } finally {
       setIsSaving(false);
     }

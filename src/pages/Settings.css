@@ -2,6 +2,42 @@
   min-height: 100vh;
   background-color: #f8fafc;
   padding: 24px;
+  transition: background-color 0.3s ease;
+}
+
+/* Dark theme support */
+[data-theme="dark"] .settings-page {
+  background-color: #1f2937;
+}
+
+[data-theme="dark"] .settings-header h1 {
+  color: #f9fafb;
+}
+
+[data-theme="dark"] .settings-header p {
+  color: #d1d5db;
+}
+
+[data-theme="dark"] .setting-label {
+  color: #f9fafb;
+}
+
+[data-theme="dark"] .setting-description {
+  color: #d1d5db;
+}
+
+[data-theme="dark"] .setting-select {
+  background-color: #374151;
+  color: #f9fafb;
+  border-color: #4b5563;
+}
+
+[data-theme="dark"] .info-label {
+  color: #d1d5db;
+}
+
+[data-theme="dark"] .info-value {
+  color: #f9fafb;
 }
 
 .settings-loading {
@@ -130,11 +166,11 @@
   border-radius: 50%;
 }
 
-.toggle-switch input:checked + .toggle-slider {
+.toggle-switch input:checked+.toggle-slider {
   background-color: #3b82f6;
 }
 
-.toggle-switch input:checked + .toggle-slider:before {
+.toggle-switch input:checked+.toggle-slider:before {
   transform: translateX(24px);
 }
 
@@ -215,7 +251,7 @@
   .settings-content {
     grid-template-columns: 1fr;
   }
-  
+
   .settings-sidebar {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -227,21 +263,21 @@
   .settings-page {
     padding: 16px;
   }
-  
+
   .settings-sidebar {
     grid-template-columns: 1fr;
   }
-  
+
   .setting-item {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
   }
-  
+
   .setting-info {
     margin-right: 0;
   }
-  
+
   .modal-actions {
     flex-direction: column;
   }
